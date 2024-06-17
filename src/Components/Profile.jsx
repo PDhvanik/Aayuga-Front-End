@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 import { useNavigate } from 'react-router-dom';
+import { URL } from '../URL';
 
 const Profile = () => {
    const [user, setUser] = useState(null);
@@ -9,10 +10,9 @@ const Profile = () => {
    useEffect(() => {
       const fetchUserProfile = async () => {
          try {
-            const token = document.cookie.split('; ').find(row => row.startsWith('Token='));
-            if (token) {
-               const tokenValue = token.split('=')[1];
-               const response = await axios.get('/api/user/profile', {
+            const tokenValue = localStorage.getItem('token');
+            if (tokenValue) {
+               const response = await axios.get(`${URL}/api/user/profile`, {
                   headers: {
                      Authorization: `Bearer ${tokenValue}`
                   }
@@ -29,7 +29,7 @@ const Profile = () => {
 
    const handleLogout = async () => {
       try {
-         document.cookie = 'Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+         localStorage.removeItem('token');
          setUser(null);
          navigate('/')
          window.location.reload();

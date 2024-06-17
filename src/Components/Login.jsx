@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { URL } from '../URL';
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/login', formData);
+      const response = await axios.post(`${URL}/api/login`, formData);
       localStorage.setItem('token', response.data.token);
       navigate('/');
       window.location.reload();

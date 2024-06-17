@@ -3,11 +3,5 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  server: {
-    proxy: {
-      '/api': 'https://aayuga-back-end.onrender.com/',
-    }
-  },
-  plugins: [react()],
-  base: "/vite-deploy/"
+  plugins: [react()]
 })

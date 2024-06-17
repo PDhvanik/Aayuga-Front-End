@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { URL } from '../URL';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -23,10 +24,11 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/api/signup', {
+    axios.post(`${URL}/api/signup`, {
       formData
     }).then((response) => {
       console.log(response);
+      
       navigate('/login')
     }).catch((error) => {
       console.log(error);

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { URL } from '../URL';
 
 const History = ({ isChange }) => {
    const [chatHistory, setChatHistory] = useState([]);
@@ -16,7 +17,7 @@ const History = ({ isChange }) => {
    const handleClear = () => {
       const user = "Dhvanik";
       setChatHistory([]);
-      axios.delete(`api/history/${user}`).then((response) => {
+      axios.delete(`${URL}/api/history/${user}`).then((response) => {
          console.log(response);
          if (response.data.status === "error") {
             setError(response.data.message);

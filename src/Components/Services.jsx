@@ -9,7 +9,7 @@ function Services() {
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
-                const token = document.cookie.split('; ').find(row => row.startsWith('Token='));
+                const token = localStorage.getItem('token');
                 if (!token) {
                     console.log('Token not found');
                     setIsLoggedIn(false);

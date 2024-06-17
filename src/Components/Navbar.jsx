@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from '../utils/logo.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { URL } from '../URL';
 
 const Navbar = () => {
    const location = useLocation();
@@ -23,10 +24,9 @@ const Navbar = () => {
    useEffect(() => {
       const checkLoginStatus = async () => {
          try {
-            const token = document.cookie.split('; ').find(row => row.startsWith('Token='));
-            if (token) {
-               const tokenValue = token.split('=')[1];
-               const response = await axios.get('/api/user/profile', {
+            const tokenValue = localStorage.getItem('token');
+            if (tokenValue) {
+               const response = await axios.get(`${URL}/api/user/profile`, {
                   headers: {
                      Authorization: `Bearer ${tokenValue}`
                   }

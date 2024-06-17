@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { URL } from '../URL';
 const QnA = ({ isChange, setIsChange }) => {
    const [question, setQuestion] = useState("");
    const [reply, setReply] = useState("");
@@ -7,7 +8,7 @@ const QnA = ({ isChange, setIsChange }) => {
    const handleChat = async () => {
       try {
          console.log(question);
-         const response = await axios.post('/api/chat', {
+         const response = await axios.post(`${URL}/api/chat`, {
             prompt: question
          });
          console.log(response);
