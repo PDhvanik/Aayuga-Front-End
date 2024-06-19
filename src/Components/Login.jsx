@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { URL } from '../URL';
+import { toast } from 'react-toastify';
+import { useAuth } from '../context/AuthContext';
+
 const Login = () => {
+  const { dispatch } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   });
-  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -22,11 +25,11 @@ const Login = () => {
     try {
       const response = await axios.post(`${URL}/api/login`, formData);
       localStorage.setItem('token', response.data.token);
+      dispatch({ type: 'LOGIN', payload: response.data.user });
+      toast.success("Welcome to Aayuga! " + response.data.user.username);
       navigate('/');
-      window.location.reload();
     } catch (error) {
-      console.log(error);
-      setError('Invalid username or password.');
+      toast.error(error.response.data.message);
     }
   };
 
@@ -64,11 +67,10 @@ const Login = () => {
               required
             />
           </div>
-          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
           <div className="flex items-center justify-center">
             <button
               className="bg-[#2262ef] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
-              onClick={handleSubmit}
+              type="submit"
             >
               LogIn
             </button>

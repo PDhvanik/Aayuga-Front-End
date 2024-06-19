@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { URL } from '../URL';
+import { ToastContainer,toast } from 'react-toastify';
 
 const History = ({ isChange }) => {
    const [chatHistory, setChatHistory] = useState([]);
@@ -18,23 +19,29 @@ const History = ({ isChange }) => {
       const user = "Dhvanik";
       setChatHistory([]);
       axios.delete(`${URL}/api/history/${user}`).then((response) => {
-         console.log(response);
          if (response.data.status === "error") {
             setError(response.data.message);
+            toast.error(response.data.message);
+         }
+         else {
+            toast.success(response.data.message);
          }
       }).catch((error) => {
-         console.log(error);
          setError("Error in deleting chat history!");
+         toast.error("Error in deleting chat history!");
       })
    }
    const fetchChatData = () => {
       const user = "Dhvanik";
       axios.get(`/api/history/${user}`).then((response) => {
          setChatHistory(response.data.Chat);
-         console.log(chatHistory);
+         if (chatHistory.length == 0) {
+            toast.info("No chat history found!");
+         }
       }).catch((error) => {
          setChatHistory("No chat history found!");
-      })
+         toast.error("Error in fetching chat history!");
+      });
    }
 
    useEffect(() => {
@@ -50,7 +57,7 @@ const History = ({ isChange }) => {
          </div>
          <div className='history bg-gray-100 h-[500px] m-6 rounded-md overflow-y-hidden scroll-bar-hidden'>
             <ul>
-               {(chatHistory.length === 0) ? "No chat history available" :
+               {!chatHistory ? "No chat history available" :
                   chatHistory.map((chat, index) => (
                      <li className='flex justify-between items-center mx-2 my-4 bg-white rounded-md px-1 drop-shadow-md' key={index}>
                         <div className='flex justify-center items-center'>
@@ -63,9 +70,6 @@ const History = ({ isChange }) => {
                   ))
                }
             </ul>
-            <div>
-               {error}
-            </div>
             {viewChat &&
                (
                   <div className="overlay-container w-[1000px] overlay fixed bg-dark pt-[10px] pb-[30px] px-[50px] rounded-xl text-white">

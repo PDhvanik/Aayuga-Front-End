@@ -16,6 +16,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { scrollAnimation } from '../lib/scroll-animation.js';
 import Loading from './Loading.jsx';
+import { toast } from 'react-toastify';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,13 +71,12 @@ function Webgi3D() {
 
       memoizedScrollAnimation(position, target, onUpdate);
    }, []);
-
    useEffect(() => {
       setupViewer();
-   }, [setupViewer]);
+   })
    return (
       <Suspense fallback={<Loading/>}>
-         <div className='fixed flex w-screen h-screen bg-transparent flex-col items-center justify-end z-10 pointer-events-none'>
+         <div className='fixed flex w-auto h-screen bg-transparent flex-col items-center justify-end z-10 pointer-events-none'>
             <canvas className='h-screen w-full bg-transparent' ref={canvasRef} />
          </div>
       </Suspense>

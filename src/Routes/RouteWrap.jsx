@@ -11,7 +11,7 @@ const Signup = lazy(() => import('../Components/Signup.jsx'));
 
 const RouteWrap = () => {
    return (
-      <>
+      <div className=''>
          <Suspense fallback={<Loading />}>
             <Router>
                <Navbar />
@@ -25,7 +25,7 @@ const RouteWrap = () => {
                </Routes>
             </Router>
          </Suspense>
-      </>
+      </div>
    )
 }
 

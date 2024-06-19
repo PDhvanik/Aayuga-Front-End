@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../URL';
+import { toast } from 'react-toastify';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -27,11 +28,10 @@ const Signup = () => {
     axios.post(`${URL}/api/signup`, {
       formData
     }).then((response) => {
-      console.log(response);
-      
+      toast.success("User Signed up successfully!");
       navigate('/login')
     }).catch((error) => {
-      console.log(error);
+      toast.error("Error in creating new user!");
     });
   };
 

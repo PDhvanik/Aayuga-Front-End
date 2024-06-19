@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import axios from 'axios';
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { URL } from '../URL';
 const QnA = ({ isChange, setIsChange }) => {
    const [question, setQuestion] = useState("");
@@ -7,15 +8,17 @@ const QnA = ({ isChange, setIsChange }) => {
 
    const handleChat = async () => {
       try {
-         console.log(question);
-         const response = await axios.post(`${URL}/api/chat`, {
+         const response = await toast.promise(axios.post(`${URL}/api/chat`, {
             prompt: question
-         });
-         console.log(response);
-         setReply(response.data);
+         }),
+            {
+               pending: 'Generating answer...',
+               success: 'Answer generated successfully',
+               error: 'Service is unavailable at this time try again after some time.'
+            });
+         setReply(response.data.message);
          setIsChange(!isChange);
       } catch (error) {
-         console.error(error);
       }
    };
 

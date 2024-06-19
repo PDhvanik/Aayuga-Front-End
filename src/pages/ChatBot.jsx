@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import QnA from '../Components/QnA'
 import History from '../Components/History'
-
 const ChatBot = () => {
   const [isChange, setIsChange] = useState(false);
   return (

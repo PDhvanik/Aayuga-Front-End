@@ -19,7 +19,7 @@ function Home() {
   }, []);
 
   return (
-    <div id="home" className="flex h-screen w-full items-center bg-gradient-to-t from-[#72ddf5]">
+    <div id="home" className="flex h-screen w-auto items-center bg-gradient-to-t from-[#72ddf5] overflow-hidden">
       <div id="home-left" className='mx-24 text-left'>
         <h1 className="text-7xl font-bold  my-2">Aayuga</h1>
         <p className="text-2xl font-semibold mb-2">Your Personal <span className='font-extrabold text-[#2262ef]'>YOGA</span> Trainer</p>

@@ -9,6 +9,7 @@ import DropDown from '../Components/DropDown';
 import { poseImages } from '../utils/pose_images';
 import { POINTS, keypointConnections } from '../data';
 import { drawPoint, drawSegment } from '../helper';
+import { toast } from 'react-toastify';
 
 
 
@@ -190,7 +191,11 @@ function Yoga() {
 
    function startYoga() {
       setIsStartPose(true)
-      runMovenet()
+      toast.promise(runMovenet(), {
+         pending: "Loading AI model and processing pose detection...",
+         success: "Successfully loaded!",
+         error:"Error loading AI model and processing pose detection!"
+      })
    }
 
    function stopPose() {
@@ -214,29 +219,32 @@ function Yoga() {
                   Best: {bestPerform} s
                </div>
             </div>
-            <div className='flex mx-[80px] rounded-md'>
-
-               <Webcam
-                  width='640px'
-                  height='480px'
-                  id="webcam"
-                  ref={webcamRef}
-                  style={{
-                     position: 'absolute',
-                     padding: '0px',
-                  }}
-               />
-               <canvas
-                  ref={canvasRef}
-                  id="my-canvas"
-                  width='640px'
-                  height='480px'
-                  style={{
-                     zIndex: 1
-                  }}
-               >
-               </canvas>
-               <div className='h-[480px] w-[640px] ml-[200px]'>
+            <div className='flex justify-around mx-[80px] rounded-md cam-container'>
+               <div className='mb-3'>
+                  <Webcam
+                     className='webcam'
+                     width='640px'
+                     height='480px'
+                     id="webcam"
+                     ref={webcamRef}
+                     style={{
+                        position: 'absolute',
+                        padding: '0px',
+                     }}
+                  />
+                  <canvas
+                     className='canvas-container'
+                     ref={canvasRef}
+                     id="my-canvas"
+                     width='640px'
+                     height='480px'
+                     style={{
+                        zIndex: 1
+                     }}
+                  >
+                  </canvas>
+               </div>
+               <div className='h-[480px] w-auto ml-[20px]'>
                   <img
                      src={poseImages[currentPose]}
                      className="h-[480px] aspect-square"

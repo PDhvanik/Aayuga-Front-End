@@ -3,8 +3,10 @@ import logo from '../utils/logo.png';
 import leftImage from '../utils/about-left.jpg';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import useScreenSize from '../hooks/useScreenSize';
 
 function About() {
+  const screenSize = useScreenSize();
   useGSAP(() => {
     gsap.to('#about-left', {
       opacity: 0,
@@ -28,10 +30,12 @@ function About() {
       })
   }, []);
   return (
-    <div id="about" className="flex h-screen w-full items-center bg-[#72ddf5] overflow-x-hidden">
-      <img id="about-left" src={leftImage} height='450px' width='270px' className='rounded-lg drop-shadow-lg mx-32' />
-      <img id="about-flower" src={logo} height='200px' width='200px' className='-m-12 ' />
-      <div id="about-right" className='ms-32 z-0 text-left'>
+    <div id="about" className="flex h-screen w-auto items-center bg-[#72ddf5] overflow-hidden">
+      <img id="about-left" src={leftImage} width='300px' className='rounded-lg drop-shadow-lg mx-32' />
+      {
+        (screenSize > 600 ? <img id="about-flower" src={logo} height='200px' width='200px' className='m-12' />:<></>)
+      }
+      <div id="about-right" className='ms-32 z-0 text-left container'>
         <h1 className="text-6xl font-bold my-2">About</h1>
         <p className="text-2xl font-semibold mt-4">What is <span className='font-bold text-[#2262ef]'>Aayuga</span> ?</p>
         <p className='me-8'>Aayuga is platfrom which provides the AI based Personal Diet planner, Yoga Trainer and Health Advisor for 24x7.</p>
