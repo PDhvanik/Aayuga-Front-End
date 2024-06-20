@@ -33,7 +33,7 @@ function About() {
     <div id="about" className="flex h-screen w-auto items-center bg-[#72ddf5] overflow-hidden">
       <img id="about-left" src={leftImage} width='300px' className='rounded-lg drop-shadow-lg mx-32' />
       {
-        (screenSize > 600 ? <img id="about-flower" src={logo} height='200px' width='200px' className='m-12' />:<></>)
+        (screenSize.width > 1200 ? <img id="about-flower" src={logo} height='200px' width='200px' className='m-12' />:<></>)
       }
       <div id="about-right" className='ms-32 z-0 text-left container'>
         <h1 className="text-6xl font-bold my-2">About</h1>

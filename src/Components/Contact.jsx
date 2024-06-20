@@ -5,7 +5,7 @@ function Contact() {
     return (
         <div id="contact" className="flex-col h-60 pt-3 w-full items-center bg-[#22c9ef] overflow-hidden">
             <div className='mx-8 flex items-center details'>
-                {(screenSize.width > 600)?<img src={logo} height='200px' width='200px' className='mx-28' />:<></>}
+                {(screenSize.width > 1200)?<img src={logo} height='200px' width='200px' className='mx-28' />:<></>}
                 <ul>
                     <li className='m-2 text-lg'><span className='font-semibold'>Email :</span> xyz@aayuga.com</li>
                     <li className='m-2 text-lg'><span className='font-semibold'>Phone :</span> 1234567890</li>

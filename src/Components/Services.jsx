@@ -46,7 +46,7 @@ function Services() {
     }
 
     return (
-        <div id="services" className="flex h-screen w-full items-center bg-gradient-to-b from-[#72ddf5] overflow-hidden">
+        <div id="services" className="flex h-screen w-auto items-center bg-gradient-to-b from-[#72ddf5] overflow-hidden">
             <div id='services-left' className='mx-[200px] rounded-xl bg-[#22c9ef] flex'>
                 <div id='cht-bt' className='flex flex-col w-60 mx-4 my-5 items-center'>
                     <video src={cht_bt} autoPlay loop muted className='w-56 mb-4 rounded-lg'></video>

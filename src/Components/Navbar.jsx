@@ -32,7 +32,7 @@ const Navbar = () => {
 
    return (
       <>
-         <div id="navbar" className='fixed top-0 w-full flex content-between justify-between items-center bg-[#22c9ef] z-50'>
+         <div id="navbar" className='fixed top-0 w-screen flex content-between justify-between items-center bg-[#22c9ef] z-50'>
             <div className="flex items-center m-2">
                <img src={logo} alt="Aayuga" height='50px' width='50px' className='ml-12 mr-3' />
                <button onClick={handleHome} className='mx-2 text-3xl font-black'>Aayuga</button>
