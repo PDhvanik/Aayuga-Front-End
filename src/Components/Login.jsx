@@ -34,9 +34,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen w-full items-center bg-gradient-to-t from-[#72ddf5]">
-      <div className="max-w-sm mx-auto">
-        <form onSubmit={handleSubmit} className="bg-white w-96 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+    <div className="flex h-screen w-full items-center justify-center bg-gradient-to-t from-[#72ddf5]">
+      <div className="sm:w-[400px]">
+        <form onSubmit={handleSubmit} className="bg-white w-auto shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <label className="block text-dark text-sm font-bold mb-2" htmlFor="username">
               Username
@@ -77,7 +77,7 @@ const Login = () => {
           </div>
         </form>
         <div className=''>
-          Don't have account
+          Don't have account ?
           <Link to='/signup' className='mx-3 py-2 px-3 text-sm text-white font-bold bg-[#2262ef] hover:bg-blue-700 rounded-md'>SignUp</Link>
         </div>
       </div>

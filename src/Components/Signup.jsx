@@ -36,9 +36,9 @@ const Signup = () => {
   };
 
   return (
-    <div className='flex h-full w-full items-center justify-center bg-gradient-to-t from-[#72ddf5]'>
-      <div className="max-w-sm mx-auto mt-20 ">
-        <form onSubmit={handleSubmit} className="bg-white w-96 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className='flex h-screen w-full items-center justify-center bg-gradient-to-t from-[#72ddf5]'>
+      <div className="sm:w-[500px] sm:mt-20 mt-10">
+        <form onSubmit={handleSubmit} className="bg-white w-auto shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <label className="block text-dark text-sm font-bold mb-2" htmlFor="username">
               Username
