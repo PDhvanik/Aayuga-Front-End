@@ -76,8 +76,8 @@ function Webgi3D() {
    })
    return (
       <Suspense fallback={<Loading/>}>
-         <div className='fixed flex w-auto h-screen bg-transparent flex-col items-center justify-end z-10 pointer-events-none'>
-            <canvas className='h-screen w-full bg-transparent' ref={canvasRef} />
+         <div className='fixed flex w-auto h-screen bg-transparent flex-col items-center justify-end z-10 pointer-events-none overflow-x-clip'>
+            <canvas className='h-[1000px] w-full bg-transparent ' ref={canvasRef} />
          </div>
       </Suspense>
    );

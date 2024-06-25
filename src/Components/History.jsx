@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { URL } from '../URL';
-import { ToastContainer,toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const History = ({ isChange }) => {
    const [chatHistory, setChatHistory] = useState([]);
@@ -48,14 +48,14 @@ const History = ({ isChange }) => {
       fetchChatData();
    }, [isChange]);
    return (
-      <div className='history-container bg-[#72ddf5] w-[30vw] rounded-md'>
-         <div className='flex content-between justify-between items-center my-4 mx-[7vw] text-xl'>
+      <div className='lg:w-[30%] bg-[#2262ef] rounded-md lg:mr-5 w-[90%] my-4'>
+         <div className='flex justify-between items-center text-xl my-2 mx-3'>
             <p >Clear History</p>
             <button className='' onClick={handleClear}>
                <i className="ri-delete-bin-line"></i>
             </button>
          </div>
-         <div className='history bg-gray-100 h-[500px] m-6 rounded-md overflow-y-hidden scroll-bar-hidden'>
+         <div className='bg-gray-100 h-[500px] m-6 rounded-md'>
             <ul>
                {!chatHistory ? "No chat history available" :
                   chatHistory.map((chat, index) => (

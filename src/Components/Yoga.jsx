@@ -1,16 +1,15 @@
 import * as poseDetection from '@tensorflow-models/pose-detection';
 import * as tf from '@tensorflow/tfjs';
-import React, { useRef, useState, useEffect } from 'react'
-import Webcam from 'react-webcam'
+import React, { useEffect, useRef, useState } from 'react';
+import Webcam from 'react-webcam';
 import { count } from '../utils/music';
 
-import Instructions from '../Components/Instructions';
+import { toast } from 'react-toastify';
 import DropDown from '../Components/DropDown';
-import { poseImages } from '../utils/pose_images';
+import Instructions from '../Components/Instructions';
 import { POINTS, keypointConnections } from '../data';
 import { drawPoint, drawSegment } from '../helper';
-import { toast } from 'react-toastify';
-
+import { poseImages } from '../utils/pose_images';
 
 
 let skeletonColor = 'rgb(255,255,255)'
@@ -194,7 +193,7 @@ function Yoga() {
       toast.promise(runMovenet(), {
          pending: "Loading AI model and processing pose detection...",
          success: "Successfully loaded!",
-         error:"Error loading AI model and processing pose detection!"
+         error: "Error loading AI model and processing pose detection!"
       })
    }
 
@@ -207,47 +206,71 @@ function Yoga() {
 
    if (isStartPose) {
       return (
-         <div className="yoga-container mt-20 bg-gradient-to-t from-[#72ddf5]">
-            <div className="flex justify-center items-center m-2 ">
-               <div className="text-white bg-[#2262ef]  font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-3 w-[240px] h-[40px]">
+         <div className="mt-16 bg-gradient-to-t from-[#72ddf5] xl:h-screen h-fit">
+            <div className="flex md:flex-row flex-col justify-center items-center m-1">
+               <div className="text-white bg-[#2262ef]  font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-2 w-[240px] h-[40px]">
                   Accuracy: {(accuracy * 100).toFixed(2)} %
                </div>
-               <div className="text-white bg-[#2262ef]  font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-3 w-[180px] h-[40px]">
+               <div className="text-white bg-[#2262ef]  font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-2 w-[240px] h-[40px]">
                   Pose Time: {poseTime} s
                </div>
-               <div className="text-white bg-[#2262ef] font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-3 w-[180px] h-[40px]">
+               <div className="text-white bg-[#2262ef]  font-medium rounded-lg text-large p-2 text-center flex justify-center items-start m-2 w-[240px] h-[40px]">
                   Best: {bestPerform} s
                </div>
             </div>
-            <div className='flex justify-around mx-[80px] rounded-md cam-container'>
-               <div className='mb-3'>
-                  <Webcam
-                     className='webcam'
-                     width='640px'
-                     height='480px'
-                     id="webcam"
-                     ref={webcamRef}
-                     style={{
-                        position: 'absolute',
-                        padding: '0px',
-                     }}
-                  />
-                  <canvas
-                     className='canvas-container'
-                     ref={canvasRef}
-                     id="my-canvas"
-                     width='640px'
-                     height='480px'
-                     style={{
-                        zIndex: 1
-                     }}
-                  >
-                  </canvas>
+            <div className='flex xl:flex-row flex-col xl:justify-between justify-center mx-[80px] items-center'>
+               <div className='flex justify-center items-center'>
+                  {(window.screen.width < 640) ?
+                     <>
+                        <Webcam
+                           className='webcam md:h-[480px] md:w-[640px]  rounded-xl'
+                           id="webcam"
+                           width='320px'
+                           height='480px'
+                           ref={webcamRef}
+                           style={{
+                              position: 'absolute',
+                              padding: '0px',
+                           }}
+                        /><canvas
+                           className='canvas-container md:h-[480px] md:w-[640px] rounded-xl'
+                           ref={canvasRef}
+                           id="my-canvas"
+                           width='320px'
+                           height='480px'
+                           style={{
+                              zIndex: 1
+                           }}
+                        >
+                        </canvas></> :
+                     <>
+                        <Webcam
+                           className='webcam md:h-[480px] md:w-[640px]  rounded-xl'
+                           id="webcam"
+                           width='640px'
+                           height='480px'
+                           ref={webcamRef}
+                           style={{
+                              position: 'absolute',
+                              padding: '0px',
+                           }}
+                        />
+                        <canvas
+                           className='canvas-container md:h-[480px] md:w-[640px] rounded-xl'
+                           ref={canvasRef}
+                           id="my-canvas"
+                           width='640px'
+                           height='480px'
+                           style={{
+                              zIndex: 1
+                           }}
+                        >
+                        </canvas></>}
                </div>
-               <div className='h-[480px] w-auto ml-[20px]'>
+               <div className='lg:h-[480px] sm:h-[420px] h-[360px] aspect-square mx-2 xl:my-0 my-2'>
                   <img
                      src={poseImages[currentPose]}
-                     className="h-[480px] aspect-square"
+                     className="rounded-xl"
                      alt='Pose'
                   />
                </div>
@@ -255,7 +278,7 @@ function Yoga() {
             </div>
             <button
                onClick={stopPose}
-               className="rounded-md bg-[#2262ef] hover:bg-blue-700 text-white px-3 py-2 m-4"
+               className="w-[240px] rounded-md bg-[#2262ef] hover:bg-blue-700 text-white px-3 py-2 m-4"
             >Stop Pose</button>
          </div>
       )
@@ -263,7 +286,7 @@ function Yoga() {
 
    return (
       <div
-         className="mt-20 bg-gradient-to-t from-[#72ddf5]"
+         className="xl:h-screen h-fit pt-16 bg-gradient-to-t from-[#72ddf5]"
       >
          <DropDown
             poseList={poseList}

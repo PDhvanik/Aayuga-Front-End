@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
    <>
-      <div className='overflow-x-hidden'>
+      <div className='overflow-x-clip'>
          <App />
          <ToastContainer
             position="top-center"

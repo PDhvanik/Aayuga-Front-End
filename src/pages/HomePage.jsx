@@ -6,15 +6,15 @@ import Webgi3D from '../Components/Webgi3D.jsx';
 import Contact from '../Components/Contact.jsx';
 import useScreenSize from '../hooks/useScreenSize.jsx'
 const HomePage = () => {
-  const windowSize = useScreenSize();
+  const screenSize = useScreenSize();
   return (
-    <div className='overflow-x-hidden'>
-      {(windowSize.width > 600) ? <Webgi3D /> :<></>}
+    <>
+      {screenSize.width > 600 && window.screen.width>600 && <Webgi3D /> }
       <Home />
       <About />
       <Services />
       <Contact />
-    </div>
+    </>
   )
 }
 

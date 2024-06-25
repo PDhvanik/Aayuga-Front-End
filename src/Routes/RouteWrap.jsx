@@ -8,6 +8,7 @@ const HomePage = lazy(() => import('../pages/HomePage.jsx'));
 const Pose = lazy(() => import('../pages/Pose.jsx'));
 const Login = lazy(() => import('../Components/Login.jsx'));
 const Signup = lazy(() => import('../Components/Signup.jsx'));
+const SelectPose = lazy(() => import('../Components/SelectPose.jsx'));
 
 const RouteWrap = () => {
    return (
@@ -18,6 +19,7 @@ const RouteWrap = () => {
                <Routes>
                   <Route path='/' element={<HomePage />} />
                   <Route path='/Pose' element={<Pose />} />
+                  <Route path='/SelectPose' element={<SelectPose />} />
                   <Route path='/ChatBot' element={<ChatBot />} />
                   <Route path='/login' element={<Login />} />
                   <Route path='/signup' element={<Signup />} />
