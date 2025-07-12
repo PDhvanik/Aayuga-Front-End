@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { toast } from 'react-toastify';
 import remarkGfm from 'remark-gfm';
 import { URL } from '../URL';
+import { useAuth } from '../context/AuthContext';
 
 // Add custom styles for animations
 const modalStyles = `
@@ -20,7 +21,7 @@ const History = ({ isChange }) => {
    const [chatHistory, setChatHistory] = useState([]);
    const [error, setError] = useState("");
    const [viewChat, setViewChat] = useState(null);
-
+   const { state } = useAuth();
    const handleView = (chat) => {
       setViewChat(chat);
    }
@@ -29,7 +30,7 @@ const History = ({ isChange }) => {
       setViewChat(null);
    }
    const handleClear = () => {
-      const user = "Dhvanik";
+      const user = state.user.username
       setChatHistory([]);
       axios.delete(`${URL}/api/history/${user}`).then((response) => {
          if (response.data.status === "error") {
@@ -45,8 +46,8 @@ const History = ({ isChange }) => {
       })
    }
    const fetchChatData = () => {
-      const user = "Dhvanik";
-      axios.get(`/api/history/${user}`).then((response) => {
+      const user = state.user.username;
+      axios.get(`${URL}/api/history/${user}`).then((response) => {
          setChatHistory(response.data.Chat);
          if (response.data.Chat.length === 0) {
             toast.info("No chat history found!");
