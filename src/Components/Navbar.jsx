@@ -52,7 +52,7 @@ const Navbar = () => {
                         <button className='mx-4 text-xl font-semibold' onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>Contact</button>
                      </>}
                      {
-                        (location.pathname === '/profile' || location.pathname === '/ChatBot' || location.pathname === '/Pose') ? <button className='mx-4 text-xl font-semibold' onClick={() => {
+                        (location.pathname === '/profile' || location.pathname === '/chatbot' || location.pathname === '/Pose') ? <button className='mx-4 text-xl font-semibold' onClick={() => {
                            navigate('/');
                         }}>Home</button> : <></>
                      }
@@ -95,7 +95,7 @@ const Navbar = () => {
                      closeNav();
                   }}>Contact</button></li>
                </>}
-               {(location.pathname === '/profile' || location.pathname === '/ChatBot' || location.pathname === '/Pose') ? <button className='mx-4 my-1 text-xl font-semibold w-full bg-[#2262ef] rounded-lg' onClick={() => {
+               {(location.pathname === '/profile' || location.pathname === '/chatbot' || location.pathname === '/Pose') ? <button className='mx-4 my-1 text-xl font-semibold w-full bg-[#2262ef] rounded-lg' onClick={() => {
                   navigate('/')
                   closeNav();
                }}>Home</button> : <></>}

@@ -14,8 +14,9 @@ const HomePage = () => {
 
   // Handler to be called when Webgi3D is fully loaded
   const handleWebgiLoaded = () => setLoading(false);
-
   useEffect(() => {
+    if (!(screenSize.width > 680 && window.screen.width > 680)) setLoading(false);
+    
     if (loading && !toastId) {
       const id = toast.info('Loading 3D scene, please wait...', { autoClose: false, toastId: 'webgi-loading' });
       setToastId(id);
@@ -28,7 +29,7 @@ const HomePage = () => {
   return (
     <>
       {/* No loader overlay, just toast */}
-      {screenSize.width > 600 && window.screen.width > 600 && (
+      {screenSize.width > 680 && window.screen.width > 680 && (
         <Webgi3D onLoaded={handleWebgiLoaded} />
       )}
       <Home />
